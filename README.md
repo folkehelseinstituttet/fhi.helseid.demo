@@ -1,4 +1,4 @@
-# Demo app using Fhi HelseId
+# Demo Fhi.HelseId
 
 This is a demo app using the Fhi.HelseId package:
 
