@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using dotnet_new_angular.HelseId;
 using Fhi.HelseId.Web;
@@ -5,6 +6,8 @@ using Fhi.HelseId.Web.ExtensionMethods;
 using Fhi.HelseId.Web.Hpr;
 using Fhi.HelseId.Web.Services;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.DataProtection.Repositories;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -73,7 +76,11 @@ namespace dotnet_new_angular
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            // If you run on a webfarm you need to persist the keys protecting your cookies
+            services.ConfigureDataProtection(); 
         }
+     
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -96,7 +103,7 @@ namespace dotnet_new_angular
 
             app.UseStaticFiles();
             if (!env.IsDevelopment())
-            {
+            { 
                 app.UseSpaStaticFiles();
             }
 
