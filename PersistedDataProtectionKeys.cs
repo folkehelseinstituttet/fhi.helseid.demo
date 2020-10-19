@@ -54,6 +54,7 @@ namespace dotnet_new_angular
     /// <summary>
     /// A simple implementation of a store / repository for persisting dataprotections keys.
     /// NOTE: This sample just stores the keys in a local dictionary, and won't work across a web farm.
+    /// You can replace this with your particular store, e.g. a SQL Server implementation
     /// </summary>
     public class PersistedDataProtectionKeys : IXmlRepository
     {
