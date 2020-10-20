@@ -89,7 +89,7 @@ namespace dotnet_new_angular
             if (_dataProtectionConfig.Enabled)
             {
                 services
-                    .AddDataProtection()                    
+                    .AddDataProtection()
                     .PersistKeysToSqlServer(_dataProtectionConfig.ConnectionString, _dataProtectionConfig.Schema, _dataProtectionConfig.TableName);
             }
         }

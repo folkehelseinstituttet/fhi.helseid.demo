@@ -21,7 +21,7 @@ namespace dotnet_new_angular.DataProtection
     // See https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-storage-providers?view=aspnetcore-3.1&tabs=visual-studio
 
     // For protecting the persisted keys ("keys at rest") your out-of-the box options include:
-    // - Azure Key Vault
+    // - Azure Key Vault 
     // - Microsoft DPAPI
     // - Certificates
     // See https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions?view=aspnetcore-3.1
@@ -46,30 +46,15 @@ namespace dotnet_new_angular.DataProtection
                 throw new ArgumentNullException(nameof(builder));
             }
 
-            builder.Services.Configure<KeyManagementOptions>(options =>
-            {
-                options.XmlRepository = new SqlServerXmlRepository(connectionString, schema, table);
-            });
-
+            builder
+                .Services
+                .Configure<KeyManagementOptions>(options => 
+                {
+                    options.XmlRepository = new SqlServerXmlRepository(connectionString, schema, table);
+                })
+;
             return builder;
         }
-
-
-        //public static void ConfigureDataProtection(this IServiceCollection services, DataProtectionConfig config)
-        //{
-           
-            
-        //    // Add a custom store (just a local cache in this demo)
-        //    services.AddSingleton<IXmlRepository, PersistedDataProtectionKeys>();
-
-        //    // Make sure the custom store is available
-        //    var built = services.BuildServiceProvider();
-
-        //    // Add dataprotection with a unique name for your application
-        //    services.AddDataProtection(opt => opt.ApplicationDiscriminator = "fhi.helseid.demo")
-        //    // Indicate that the custom store should be used 
-        //    .AddKeyManagementOptions(opt => opt.XmlRepository = built.GetService<IXmlRepository>());
-        //}
     }
   
 }
