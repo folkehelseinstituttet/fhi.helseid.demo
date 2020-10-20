@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using dotnet_new_angular.DataProtection;
 using dotnet_new_angular.HelseId;
 using Fhi.HelseId.Web;
 using Fhi.HelseId.Web.ExtensionMethods;
@@ -22,10 +23,12 @@ namespace dotnet_new_angular
         private readonly IConfigurationSection _helseIdConfigurationSection;
         private readonly IConfigurationSection _redirectPagesConfigurationSection;
         private readonly IConfigurationSection _hprConfigurationSection;
+        private readonly IConfigurationSection _dataprotectionConfigSection;
         private readonly DemoHelseIdConfig _demoHelseIdConfiguration;
         private readonly RedirectPagesKonfigurasjon _redirectPagesConfiguration;
         private readonly HprKonfigurasjon _hprConfiguration;
         private readonly Whitelist _whitelist;
+        private readonly DataProtectionConfig _dataProtectionConfig;
 
         private bool UseAuth => _demoHelseIdConfiguration.AuthUse;
         private bool UseHttps => _demoHelseIdConfiguration.UseHttps;
@@ -44,6 +47,9 @@ namespace dotnet_new_angular
             _hprConfiguration = _hprConfigurationSection.Get<HprKonfigurasjon>();
 
             _whitelist = Configuration.GetSection(nameof(WhitelistConfiguration)).Get<WhitelistConfiguration>().Whitelist;
+
+            _dataprotectionConfigSection = Configuration.GetSection(nameof(DataProtectionConfig));
+            _dataProtectionConfig = _dataprotectionConfigSection.Get<DataProtectionConfig>();
         }
 
         public IConfiguration Configuration { get; }
@@ -78,7 +84,14 @@ namespace dotnet_new_angular
             });
 
             // If you run on a webfarm you need to persist the keys protecting your cookies
-            services.ConfigureDataProtection(); 
+            // Note that we do not encrypt the stored keys in this sample. For            
+            // more information, see DataProtectionExtensions.cs.
+            if (_dataProtectionConfig.Enabled)
+            {
+                services
+                    .AddDataProtection()                    
+                    .PersistKeysToSqlServer(_dataProtectionConfig.ConnectionString, _dataProtectionConfig.Schema, _dataProtectionConfig.TableName);
+            }
         }
      
 
