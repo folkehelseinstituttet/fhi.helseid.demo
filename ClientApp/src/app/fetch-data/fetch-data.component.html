@@ -2,7 +2,7 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
-<p *ngIf="!forecasts"><em>Loading...</em></p>
+<p *ngIf="!forecasts && errorMessage === null"><em>Loading...</em></p>
 
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts">
   <thead>
@@ -22,3 +22,8 @@
     </tr>
   </tbody>
 </table>
+
+<div *ngIf="errorMessage">
+  <h5>Error while fetching data:</h5>
+  <p>{{errorMessage | json}}</p>
+</div>
