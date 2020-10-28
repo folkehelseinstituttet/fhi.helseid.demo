@@ -17,8 +17,8 @@ Copy the `appsettings.Template.json` and name it `appsettings.json`.
 You need to have a client that is registered in HelseId's test environment in order to setup this demo.
 The client needs to be configured with a callback URL for localhost that matches the port you are running to app on.
 
-By default the app is set up to run on port 51384 in [Program.cs](https://github.com/folkehelseinstituttet/fhi.helseid.demo/blob/master/Program.cs).
-This is the configuration HelseId needs to setup as a Redirect URI for your app.
+By default this demo app is set up to run on port 51384 in [Program.cs](https://github.com/folkehelseinstituttet/fhi.helseid.demo/blob/master/Program.cs).
+This is the configuration HelseId needs to setup as a Redirect URI for your app:
 
 ```
 https://localhost:51384/signin-callback
