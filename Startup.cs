@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using dotnet_new_angular.DataProtection;
 using dotnet_new_angular.HelseId;
@@ -7,8 +6,6 @@ using Fhi.HelseId.Web.ExtensionMethods;
 using Fhi.HelseId.Web.Hpr;
 using Fhi.HelseId.Web.Services;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.DataProtection;
-using Microsoft.AspNetCore.DataProtection.Repositories;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
