@@ -6,6 +6,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      client-directory: ./ClientApp
+
 
     steps:
     - uses: actions/checkout@v2
@@ -17,4 +20,16 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
+
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Install dependencies
+      run: npm install
+      working-directory: ${{env.client-directory}}
+    - name: Build Angular frontend
+      run: npm run build
+      working-directory: ${{env.client-directory}}
+
 
