@@ -134,12 +134,13 @@ namespace dotnet_new_angular
             // Note: The path '/api/User/Logout' must be whitelisted.
             // This is to enable users that are logged in to HelseId, but without sufficient access, allowed to call this 
             // endpoint in order to logout. Endpoint is called from the Forbidden page.
-            app.UseHelseIdProtectedPaths(_demoHelseIdConfiguration, _redirectPagesConfiguration,
+            app.UseHelseIdProtectedPaths(_demoHelseIdConfiguration, _hprConfiguration, _redirectPagesConfiguration,
                 new List<PathString>
                 {
                     "/assets/favicon.ico",
                     "/api/User/Logout"
                 });
+
             app.UseEndpoints(endpoints => endpoints.MapControllers());
 
             app.UseSpa(spa =>
