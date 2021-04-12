@@ -5,6 +5,7 @@ This is a demo app using the Fhi.HelseId package:
 https://github.com/folkehelseinstituttet/fhi.helseid
 
 The app is a plain `dotnet new angular` app with the HelseId component added.
+Angular has been updated from version 8 (the default when using `dotnet new angular`) to version 10.
 
 It demonstrates login, logout and protection of all other routes.
 
